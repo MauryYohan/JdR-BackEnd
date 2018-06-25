@@ -1,23 +1,23 @@
 package com.jdr.entity;
 
-public class Views {
-	public static class Common{
-		
-	}
+public interface Views {
+	public static interface Common{}
+
 	
-	public static class Book extends Common{
-		
-	}
+	public interface Joueur extends Common{}
+	public interface JoueurWithPartie extends Joueur{}
 	
-	public static class Author extends Common{
-		
-	}
+	public interface MJ extends Common{}
+	public interface MJWithPartie extends MJ{}
 	
-	public static class BookWithAuthors extends Book{
-		
-	}
-	public static class AuthorWithBooks extends Author{
-		
-	}
+	public interface Partie extends Common{}
+	public interface PartieWithMJ extends Partie{}
+	public interface PartieWithJoueur extends Partie{}
+	public interface PartieWithPersonnage extends Partie{} 
 	
+	public interface Personnage extends Common{}
+	public interface PersonnageWithPartie extends Personnage{}
+	
+	public interface Image extends Common{}
+	public interface ImageWithPartie extends Partie{}
 }

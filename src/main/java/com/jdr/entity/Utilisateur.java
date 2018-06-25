@@ -20,7 +20,7 @@ import com.jdr.entity.Views;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Utilisateur 
 {
-	//Attributs
+//Attributs-------------------------------------------------------------------
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,27 +28,30 @@ public class Utilisateur
 	@Column(name="id_utilisateur")
 	private int id;
 	
-	@Column(name="mail_utilisateur")
+	@Column(name="mail_utilisateur", length=75)
 	@JsonView(Views.Common.class)
 	protected String mail;
 	
-	@Column(name="login_utilisateur")
+	@Column(name="login_utilisateur", length=30)
 	@JsonView(Views.Common.class)
 	protected String login;
 	
-	@Column(name="motDePasse_utilisateur")
+	@Column(name="motDePasse_utilisateur", length=30)
 	@JsonView(Views.Common.class)
 	protected String motDePasse;
 	
-	@Column(name="avatar_utilisateur")
+	@Column(name="avatar_utilisateur", length=1000)
 	@JsonView(Views.Common.class)
 	public String avatar;
 	
-	@Column(name="pseudo_utilisateur")
+	@Column(name="pseudo_utilisateur", length=30)
 	@JsonView(Views.Common.class)
 	public String pseudo;
 
-	//Constructeur
+//Constructeur-------------------------------------------------------------------
+	
+	public Utilisateur() {}
+	
 	public Utilisateur (String mail, String login,String pseudo, String motDePasse) 
 	{
 		this.mail=mail;
@@ -62,8 +65,16 @@ public class Utilisateur
 		this.login=login;//this= instance de l'objet sur lequel je travail. Attribut de l'objet=l'argument
 		this.motDePasse=motDePasse;
 	}
+
+//Getters setters-------------------------------------------------------------------
 	
-	public Utilisateur() {}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getMail() {
 		return mail;
@@ -105,7 +116,7 @@ public class Utilisateur
 		this.pseudo = pseudo;
 	}
 
-	// Methodes
+// Methodes-------------------------------------------------------------------
 	public void seConnecter() 
 	{
 	}

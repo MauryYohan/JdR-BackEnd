@@ -20,63 +20,63 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.jdr.dao.IncidentDao;
-import com.jdr.entity.Incident;
+import com.jdr.dao.UtilisateurDao;
+import com.jdr.entity.Utilisateur;
 import com.jdr.entity.Views;
 
 
 @RestController
 @CrossOrigin
-public class IncidentController {
+public class UtilisateurController {
 	
 	@Autowired	
-	IncidentDao incidentDao;
+	UtilisateurDao utilisateurDao;
 	
-	@GetMapping("/incidents/{id}")
-	public ResponseEntity<Incident> findOne(@PathVariable("id") Integer id){
+	@GetMapping("/utilisateurs/{id}")
+	public ResponseEntity<Utilisateur> findOne(@PathVariable("id") Integer id){
 		
-		Incident b = incidentDao.findByPrimaryKey(id);
-		System.out.println("caca");
+		Utilisateur b = utilisateurDao.findByPrimaryKey(id);
+		
 		if(b == null) {
-			return new ResponseEntity<Incident>(b, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Utilisateur>(b, HttpStatus.NOT_FOUND);
 		}else {
-			return new ResponseEntity<Incident>(b, HttpStatus.OK);
+			return new ResponseEntity<Utilisateur>(b, HttpStatus.OK);
 		}
 	}
 	
-	@GetMapping("/incidents")
-	public ResponseEntity<List<Incident>> findAll() {
-		List<Incident> incidents = incidentDao.findAll();
-		return new ResponseEntity<List<Incident>>(incidents, HttpStatus.OK);
+	@GetMapping("/utilisateurs")
+	public ResponseEntity<List<Utilisateur>> findAll() {
+		List<Utilisateur> utilisateurs = utilisateurDao.findAll();
+		return new ResponseEntity<List<Utilisateur>>(utilisateurs, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/incidents/{id}")
-	public ResponseEntity<Incident> delete(@PathVariable("id") Integer id){
-		Incident tmp = incidentDao.findByPrimaryKey(id);
+	@DeleteMapping("/utilisateurs/{id}")
+	public ResponseEntity<Utilisateur> delete(@PathVariable("id") Integer id){
+		Utilisateur tmp = utilisateurDao.findByPrimaryKey(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
-			incidentDao.delete(tmp);
+			utilisateurDao.delete(tmp);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}	
 	}
 	
-	@PostMapping("/incidents")
-	public ResponseEntity<Incident> create(@Valid @RequestBody Incident incident) {
-		if (incident.getId() > 0) {
+	@PostMapping("/utilisateurs")
+	public ResponseEntity<Utilisateur> create(@Valid @RequestBody Utilisateur utilisateur) {
+		if (utilisateur.getId() > 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		incidentDao.save(incident);
-		return new ResponseEntity<Incident>(incident, HttpStatus.CREATED);
+		utilisateurDao.save(utilisateur);
+		return new ResponseEntity<Utilisateur>(utilisateur, HttpStatus.CREATED);
 	}
-	@PutMapping("/incidents")
-	public ResponseEntity<Incident> update(@RequestBody Incident incident) {
-		if (incident.getId() == 0) {
-			return create(incident);
+	@PutMapping("/utilisateurs")
+	public ResponseEntity<Utilisateur> update(@RequestBody Utilisateur utilisateur) {
+		if (utilisateur.getId() == 0) {
+			return create(utilisateur);
 		}
-		incident = incidentDao.update(incident);
+		utilisateur = utilisateurDao.update(utilisateur);
 
-		return new ResponseEntity<Incident>(incident, HttpStatus.OK);
+		return new ResponseEntity<Utilisateur>(utilisateur, HttpStatus.OK);
 	}
 	
     @ExceptionHandler({ Exception.class })

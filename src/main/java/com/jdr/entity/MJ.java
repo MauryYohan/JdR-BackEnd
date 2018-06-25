@@ -1,21 +1,32 @@
 package com.jdr.entity;
 
+import java.util.Set;
+
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
 public class MJ extends Utilisateur
 {
-	//Attributs
+//Attributs-------------------------------------------------------------------
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@JsonView(Views.Common.class)
 	private int id;
 	
-	//constructeur
+	@OneToMany(mappedBy="mj", fetch = FetchType.EAGER)
+	@JsonView(Views.MJWithPartie.class)
+	private Set<Partie> partie;
+	
+//constructeur-------------------------------------------------------------------
+	
+	public MJ() {}
+	
 	public MJ(String mail, String login,String pseudo, String motDePasse) 
 	{
 		super(mail,login, pseudo, motDePasse);
@@ -29,8 +40,15 @@ public class MJ extends Utilisateur
 		this.id = id;
 	}
 
+	public Set<Partie> getPartie() {
+		return partie;
+	}
 
-	//Methodes 
+	public void setPartie(Set<Partie> partie) {
+		this.partie = partie;
+	}
+
+//Methodes -------------------------------------------------------------------
 	protected void devenirJoueur()
 	{
 		
