@@ -36,7 +36,7 @@ public class IncidentController {
 	public ResponseEntity<Incident> findOne(@PathVariable("id") Integer id){
 		
 		Incident b = incidentDao.findByPrimaryKey(id);
-		
+		System.out.println("caca");
 		if(b == null) {
 			return new ResponseEntity<Incident>(b, HttpStatus.NOT_FOUND);
 		}else {
