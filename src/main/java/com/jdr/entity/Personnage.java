@@ -2,6 +2,7 @@ package com.jdr.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -84,7 +85,7 @@ public class Personnage {
 	@NotNull
 	public String sexe;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonView(Views.PersonnageWithPartie.class)
 	private Partie partie;
 

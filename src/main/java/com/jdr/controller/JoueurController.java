@@ -33,6 +33,7 @@ public class JoueurController {
 	JoueurDao joueurDao;
 	
 	@GetMapping("/joueurs/{id}")
+	@JsonView(com.jdr.entity.Views.JoueurWithPartie.class)
 	public ResponseEntity<Joueur> findOne(@PathVariable("id") Integer id){
 		
 		Joueur b = joueurDao.findByPrimaryKey(id);
@@ -45,12 +46,14 @@ public class JoueurController {
 	}
 	
 	@GetMapping("/joueurs")
+	@JsonView(com.jdr.entity.Views.JoueurWithPartie.class)
 	public ResponseEntity<List<Joueur>> findAll() {
 		List<Joueur> joueurs = joueurDao.findAll();
 		return new ResponseEntity<List<Joueur>>(joueurs, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/joueurs/{id}")
+	@JsonView(com.jdr.entity.Views.JoueurWithPartie.class)
 	public ResponseEntity<Joueur> delete(@PathVariable("id") Integer id){
 		Joueur tmp = joueurDao.findByPrimaryKey(id);
 		if (tmp == null) {
@@ -62,6 +65,7 @@ public class JoueurController {
 	}
 	
 	@PostMapping("/joueurs")
+	@JsonView(com.jdr.entity.Views.JoueurWithPartie.class)
 	public ResponseEntity<Joueur> create(@Valid @RequestBody Joueur joueur) {
 		if (joueur.getId() > 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -70,6 +74,7 @@ public class JoueurController {
 		return new ResponseEntity<Joueur>(joueur, HttpStatus.CREATED);
 	}
 	@PutMapping("/joueurs")
+	@JsonView(com.jdr.entity.Views.JoueurWithPartie.class)
 	public ResponseEntity<Joueur> update(@RequestBody Joueur joueur) {
 		if (joueur.getId() == 0) {
 			return create(joueur);

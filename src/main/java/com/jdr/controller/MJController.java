@@ -33,6 +33,7 @@ public class MJController {
 	MJDao mjDao;
 	
 	@GetMapping("/mjs/{id}")
+	@JsonView(com.jdr.entity.Views.MJWithPartie.class)
 	public ResponseEntity<MJ> findOne(@PathVariable("id") Integer id){
 		
 		MJ b = mjDao.findByPrimaryKey(id);
@@ -45,12 +46,14 @@ public class MJController {
 	}
 	
 	@GetMapping("/mjs")
+	@JsonView(com.jdr.entity.Views.MJWithPartie.class)
 	public ResponseEntity<List<MJ>> findAll() {
 		List<MJ> mjs = mjDao.findAll();
 		return new ResponseEntity<List<MJ>>(mjs, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/mjs/{id}")
+	@JsonView(com.jdr.entity.Views.MJWithPartie.class)
 	public ResponseEntity<MJ> delete(@PathVariable("id") Integer id){
 		MJ tmp = mjDao.findByPrimaryKey(id);
 		if (tmp == null) {
@@ -62,6 +65,7 @@ public class MJController {
 	}
 	
 	@PostMapping("/mjs")
+	@JsonView(com.jdr.entity.Views.MJWithPartie.class)
 	public ResponseEntity<MJ> create(@Valid @RequestBody MJ mj) {
 		if (mj.getId() > 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -70,6 +74,7 @@ public class MJController {
 		return new ResponseEntity<MJ>(mj, HttpStatus.CREATED);
 	}
 	@PutMapping("/mjs")
+	@JsonView(com.jdr.entity.Views.MJWithPartie.class)
 	public ResponseEntity<MJ> update(@RequestBody MJ mj) {
 		if (mj.getId() == 0) {
 			return create(mj);

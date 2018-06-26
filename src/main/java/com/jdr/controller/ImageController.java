@@ -33,6 +33,7 @@ public class ImageController {
 	ImageDao imageDao;
 	
 	@GetMapping("/images/{id}")
+	@JsonView(com.jdr.entity.Views.ImageWithPartie.class)
 	public ResponseEntity<Image> findOne(@PathVariable("id") Integer id){
 		
 		Image b = imageDao.findByPrimaryKey(id);
@@ -45,12 +46,14 @@ public class ImageController {
 	}
 	
 	@GetMapping("/images")
+	@JsonView(com.jdr.entity.Views.ImageWithPartie.class)
 	public ResponseEntity<List<Image>> findAll() {
 		List<Image> images = imageDao.findAll();
 		return new ResponseEntity<List<Image>>(images, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/images/{id}")
+	@JsonView(com.jdr.entity.Views.ImageWithPartie.class)
 	public ResponseEntity<Image> delete(@PathVariable("id") Integer id){
 		Image tmp = imageDao.findByPrimaryKey(id);
 		if (tmp == null) {
@@ -62,6 +65,7 @@ public class ImageController {
 	}
 	
 	@PostMapping("/images")
+	@JsonView(com.jdr.entity.Views.ImageWithPartie.class)
 	public ResponseEntity<Image> create(@Valid @RequestBody Image image) {
 		if (image.getId() > 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -70,6 +74,7 @@ public class ImageController {
 		return new ResponseEntity<Image>(image, HttpStatus.CREATED);
 	}
 	@PutMapping("/images")
+	@JsonView(com.jdr.entity.Views.ImageWithPartie.class)
 	public ResponseEntity<Image> update(@RequestBody Image image) {
 		if (image.getId() == 0) {
 			return create(image);

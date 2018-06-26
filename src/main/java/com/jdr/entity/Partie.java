@@ -53,7 +53,7 @@ public class Partie
 	@JsonView(Views.PartieWithMJ.class)
 	private MJ mj;
 	
-	@ManyToMany(mappedBy="listPartie")
+	@ManyToMany(mappedBy="listPartie",fetch = FetchType.EAGER)
 	@JsonView(Views.JoueurWithPartie.class)
 	private List<Joueur> joueur;
 	

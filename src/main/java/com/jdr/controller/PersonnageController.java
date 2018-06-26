@@ -16,13 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-<<<<<<< HEAD
-import com.jdr.dao.PersonnageDao;
-=======
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.jdr.dao.PersonnageDao;
-import com.jdr.entity.Partie;
->>>>>>> master
 import com.jdr.entity.Personnage;
 
 
@@ -34,6 +30,7 @@ public class PersonnageController {
 	PersonnageDao personnageDao;
 	
 	@GetMapping("/personnages/{id}")
+	@JsonView(com.jdr.entity.Views.PersonnageWithPartie.class)
 	public ResponseEntity<Personnage> findOne(@PathVariable("id") Integer id){
 		
 		Personnage b = personnageDao.findByPrimaryKey(id);
@@ -46,12 +43,14 @@ public class PersonnageController {
 	}
 	
 	@GetMapping("/personnages")
+	@JsonView(com.jdr.entity.Views.PersonnageWithPartie.class)
 	public ResponseEntity<List<Personnage>> findAll() {
 		List<Personnage> personnages = personnageDao.findAll();
 		return new ResponseEntity<List<Personnage>>(personnages, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/personnages/{id}")
+	@JsonView(com.jdr.entity.Views.PersonnageWithPartie.class)
 	public ResponseEntity<Personnage> delete(@PathVariable("id") Integer id){
 		Personnage tmp = personnageDao.findByPrimaryKey(id);
 		if (tmp == null) {
@@ -63,6 +62,7 @@ public class PersonnageController {
 	}
 	
 	@PostMapping("/personnages")
+	@JsonView(com.jdr.entity.Views.PersonnageWithPartie.class)
 	public ResponseEntity<Personnage> create(@Valid @RequestBody Personnage personnage) {
 		if (personnage.getId() > 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -71,6 +71,7 @@ public class PersonnageController {
 		return new ResponseEntity<Personnage>(personnage, HttpStatus.CREATED);
 	}
 	@PutMapping("/personnages")
+	@JsonView(com.jdr.entity.Views.PersonnageWithPartie.class)
 	public ResponseEntity<Personnage> update(@RequestBody Personnage personnage) {
 		if (personnage.getId() == 0) {
 			return create(personnage);

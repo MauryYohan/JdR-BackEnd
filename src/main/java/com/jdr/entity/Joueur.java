@@ -3,6 +3,7 @@ package com.jdr.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Joueur extends Utilisateur
 	@JsonView(Views.Common.class)
 	private int id;
 	
-	@ManyToMany // dans ensemble car c'est le proprio et non le detenu.
+	@ManyToMany(fetch = FetchType.EAGER) // dans ensemble car c'est le proprio et non le detenu.
 	@JoinTable(name="Joueur_Partie",
 	joinColumns=@JoinColumn(name="Joueur_id"),
 	inverseJoinColumns=@JoinColumn(name="Partie_id"))

@@ -33,6 +33,7 @@ public class PartieController {
 	PartieDao partieDao;
 	
 	@GetMapping("/parties/{id}")
+	@JsonView(Views.PartieWithEverything.class)
 	public ResponseEntity<Partie> findOne(@PathVariable("id") Integer id){
 		
 		Partie b = partieDao.findByPrimaryKey(id);
@@ -45,12 +46,14 @@ public class PartieController {
 	}
 	
 	@GetMapping("/parties")
+	@JsonView(Views.PartieWithEverything.class)
 	public ResponseEntity<List<Partie>> findAll() {
 		List<Partie> parties = partieDao.findAll();
 		return new ResponseEntity<List<Partie>>(parties, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/parties/{id}")
+	@JsonView(Views.PartieWithEverything.class)
 	public ResponseEntity<Partie> delete(@PathVariable("id") Integer id){
 		Partie tmp = partieDao.findByPrimaryKey(id);
 		if (tmp == null) {
@@ -62,6 +65,7 @@ public class PartieController {
 	}
 	
 	@PostMapping("/parties")
+	@JsonView(Views.PartieWithEverything.class)
 	public ResponseEntity<Partie> create(@Valid @RequestBody Partie partie) {
 		if (partie.getId() > 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -70,6 +74,7 @@ public class PartieController {
 		return new ResponseEntity<Partie>(partie, HttpStatus.CREATED);
 	}
 	@PutMapping("/parties")
+	@JsonView(Views.PartieWithEverything.class)
 	public ResponseEntity<Partie> update(@RequestBody Partie partie) {
 		if (partie.getId() == 0) {
 			return create(partie);
