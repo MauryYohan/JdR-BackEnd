@@ -16,13 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-<<<<<<< HEAD
 import com.jdr.dao.PersonnageDao;
-=======
+
 
 import com.jdr.dao.PersonnageDao;
 import com.jdr.entity.Partie;
->>>>>>> master
 import com.jdr.entity.Personnage;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.jdr.dao.PersonnageDao;
@@ -74,7 +72,7 @@ public class PersonnageController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		personnageDao.save(personnage);
-		return new ResponseEntity<Personnage>(perse, HttpStatus.CREATED);
+		return new ResponseEntity<Personnage>(personnage, HttpStatus.CREATED);
 	}
 	@PutMapping("/personnages")
 	public ResponseEntity<Personnage> update(@RequestBody Personnage personnage) {
