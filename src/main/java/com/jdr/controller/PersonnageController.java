@@ -24,6 +24,12 @@ import com.jdr.dao.PersonnageDao;
 import com.jdr.entity.Partie;
 >>>>>>> master
 import com.jdr.entity.Personnage;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.jdr.dao.PersonnageDao;
+import com.jdr.dao.PersonnageDao;
+import com.jdr.entity.Personnage;
+import com.jdr.entity.Views;
+
 
 
 @RestController
@@ -68,7 +74,7 @@ public class PersonnageController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		personnageDao.save(personnage);
-		return new ResponseEntity<Personnage>(personnage, HttpStatus.CREATED);
+		return new ResponseEntity<Personnage>(perse, HttpStatus.CREATED);
 	}
 	@PutMapping("/personnages")
 	public ResponseEntity<Personnage> update(@RequestBody Personnage personnage) {
