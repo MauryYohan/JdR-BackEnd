@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -34,22 +35,21 @@ public class Partie
 	@JsonView(Views.Common.class)
 	public String ImageDeFond;
 	
-	@Column(name="nbJoueurs_Partie")
+	@Column(name="nb_Joueurs_Partie")
 	@NotNull
 	@JsonView(Views.Common.class)
 	public int nbJoueurs;
 	
-	@Column(name="nbJoueurs_Partie", length=100)
+	@Column(name="titrePartie", length=100)
 	@NotNull
 	@JsonView(Views.Common.class)
 	public String titrePartie;
 	
-	/*@OneToMany(mappedBy="partie", fetch = FetchType.EAGER)
-	@JsonView(Views..class)
-	private Set<Image> image;*/
+	@OneToMany(mappedBy="partie", fetch = FetchType.EAGER)
+	@JsonView(Views.PartieWithImage.class)
+	private Set<Image> image;
 	
-	@OneToOne
-	@JoinColumn(name="id_MJ")
+	@ManyToOne
 	@JsonView(Views.PartieWithMJ.class)
 	private MJ mj;
 	

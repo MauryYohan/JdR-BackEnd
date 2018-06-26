@@ -11,6 +11,7 @@ public interface Views {
 	public interface MJWithPartie extends MJ{}
 	
 	public interface Partie extends Common{}
+	public interface PartieWithImage extends Image{}
 	public interface PartieWithMJ extends Partie{}
 	public interface PartieWithJoueur extends Partie{}
 	public interface PartieWithPersonnage extends Partie{} 

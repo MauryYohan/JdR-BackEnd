@@ -2,14 +2,18 @@ package com.jdr.entity;
 
 import java.util.Set;
 
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+@Entity
+@Table(name="MJ")
 public class MJ extends Utilisateur
 {
 //Attributs-------------------------------------------------------------------
