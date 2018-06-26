@@ -54,7 +54,7 @@ public class Partie
 	private MJ mj;
 	
 	@ManyToMany(mappedBy="listPartie",fetch = FetchType.EAGER)
-	@JsonView(Views.JoueurWithPartie.class)
+	@JsonView(Views.PartieWithJoueur.class)
 	private List<Joueur> joueur;
 	
 	@OneToMany(mappedBy="partie", fetch = FetchType.EAGER)

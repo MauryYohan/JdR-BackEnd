@@ -33,6 +33,7 @@ public class UtilisateurController {
 	UtilisateurDao utilisateurDao;
 	
 	@GetMapping("/utilisateurs/{id}")
+	@JsonView(com.jdr.entity.Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> findOne(@PathVariable("id") Integer id){
 		
 		Utilisateur b = utilisateurDao.findByPrimaryKey(id);
@@ -45,12 +46,14 @@ public class UtilisateurController {
 	}
 	
 	@GetMapping("/utilisateurs")
+	@JsonView(com.jdr.entity.Views.Utilisateur.class)
 	public ResponseEntity<List<Utilisateur>> findAll() {
 		List<Utilisateur> utilisateurs = utilisateurDao.findAll();
 		return new ResponseEntity<List<Utilisateur>>(utilisateurs, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/utilisateurs/{id}")
+	@JsonView(com.jdr.entity.Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> delete(@PathVariable("id") Integer id){
 		Utilisateur tmp = utilisateurDao.findByPrimaryKey(id);
 		if (tmp == null) {
@@ -62,6 +65,7 @@ public class UtilisateurController {
 	}
 	
 	@PostMapping("/utilisateurs")
+	@JsonView(com.jdr.entity.Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> create(@Valid @RequestBody Utilisateur utilisateur) {
 		if (utilisateur.getId() > 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -70,6 +74,7 @@ public class UtilisateurController {
 		return new ResponseEntity<Utilisateur>(utilisateur, HttpStatus.CREATED);
 	}
 	@PutMapping("/utilisateurs")
+	@JsonView(com.jdr.entity.Views.Utilisateur.class)
 	public ResponseEntity<Utilisateur> update(@RequestBody Utilisateur utilisateur) {
 		if (utilisateur.getId() == 0) {
 			return create(utilisateur);

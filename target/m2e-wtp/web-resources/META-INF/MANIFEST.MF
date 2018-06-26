@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: spring-boot-jdr
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Julien
+Built-By: User
 Implementation-Vendor-Id: com.monappliJDR
 Build-Jdk: 1.8.0_171
 Implementation-URL: http://projects.spring.io/spring-boot/spring-boot-

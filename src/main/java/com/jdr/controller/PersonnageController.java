@@ -16,24 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-<<<<<<< HEAD
-=======
 import com.jdr.dao.PersonnageDao;
-
->>>>>>> master
-
 import com.fasterxml.jackson.annotation.JsonView;
-import com.jdr.dao.PersonnageDao;
-<<<<<<< HEAD
-=======
-import com.jdr.entity.Partie;
->>>>>>> master
 import com.jdr.entity.Personnage;
-import com.fasterxml.jackson.annotation.JsonView;
-import com.jdr.dao.PersonnageDao;
-import com.jdr.dao.PersonnageDao;
-import com.jdr.entity.Personnage;
-import com.jdr.entity.Views;
 
 
 
