@@ -9,41 +9,43 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jdr.entity.Incident;
+import com.jdr.entity.Utilisateur;
 
 @Transactional
 @Repository
-public class IncidentDaoImpl implements IncidentDao{
+public class UtilisateurDaoImpl implements UtilisateurDao{
 
 	@PersistenceContext
 	EntityManager em;
 
 	@Override
-	public List<Incident> findAll() {
-		String querystring = "SELECT i FROM Incident i ORDER BY id" ;
+	public List<Utilisateur> findAll() {
+		String querystring = "SELECT u FROM Utilisateur u ORDER BY id" ;
 		Query query = em.createQuery( querystring ) ;
-		List<Incident> list = query.getResultList() ;
+		List<Utilisateur> list = query.getResultList() ;
 		return list;
 	}
 
 	@Override
-	public Incident save(Incident entity) {
+	public Utilisateur save(Utilisateur entity) {
 		em.persist(entity);
 		return entity;
 	}
 
 	@Override
-	public void delete(Incident entity) {
+	public void delete(Utilisateur entity) {
 		entity = em.merge(entity);
 		em.remove(entity);
 	}
 
-	public Incident findByPrimaryKey(Integer id) {
-		return em.find(Incident.class, id);
+	public Utilisateur findByPrimaryKey(Integer id) {
+		return em.find(Utilisateur.class, id);
 	}
 
 	@Override
-	public Incident update(Incident entity) {
+	public Utilisateur update(Utilisateur entity) {
 		return em.merge(entity);
 	}
+
+
 }
