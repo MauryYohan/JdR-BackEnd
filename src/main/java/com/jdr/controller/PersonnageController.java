@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,12 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.WebRequest;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.jdr.dao.PartieDao;
+import com.jdr.dao.PersonnageDao;
 import com.jdr.entity.Partie;
-import com.jdr.entity.Views;
+import com.jdr.entity.Personnage;
 
 
 @RestController
@@ -33,26 +30,26 @@ public class PersonnageController {
 	PersonnageDao personnageDao;
 	
 	@GetMapping("/personnages/{id}")
-	public ResponseEntity<Partie> findOne(@PathVariable("id") Integer id){
+	public ResponseEntity<Personnage> findOne(@PathVariable("id") Integer id){
 		
-		Partie b = personnageDao.findByPrimaryKey(id);
+		Personnage b = personnageDao.findByPrimaryKey(id);
 		
 		if(b == null) {
-			return new ResponseEntity<Partie>(b, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Personnage>(b, HttpStatus.NOT_FOUND);
 		}else {
-			return new ResponseEntity<Partie>(b, HttpStatus.OK);
+			return new ResponseEntity<Personnage>(b, HttpStatus.OK);
 		}
 	}
 	
 	@GetMapping("/personnages")
-	public ResponseEntity<List<Partie>> findAll() {
-		List<Partie> personnages = personnageDao.findAll();
-		return new ResponseEntity<List<Partie>>(personnages, HttpStatus.OK);
+	public ResponseEntity<List<Personnage>> findAll() {
+		List<Personnage> personnages = personnageDao.findAll();
+		return new ResponseEntity<List<Personnage>>(personnages, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/personnages/{id}")
-	public ResponseEntity<Partie> delete(@PathVariable("id") Integer id){
-		Partie tmp = personnageDao.findByPrimaryKey(id);
+	public ResponseEntity<Personnage> delete(@PathVariable("id") Integer id){
+		Personnage tmp = personnageDao.findByPrimaryKey(id);
 		if (tmp == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		} else {
@@ -62,21 +59,21 @@ public class PersonnageController {
 	}
 	
 	@PostMapping("/personnages")
-	public ResponseEntity<Partie> create(@Valid @RequestBody Partie personnage) {
+	public ResponseEntity<Personnage> create(@Valid @RequestBody Personnage personnage) {
 		if (personnage.getId() > 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		personnageDao.save(personnage);
-		return new ResponseEntity<Partie>(personnage, HttpStatus.CREATED);
+		return new ResponseEntity<Personnage>(personnage, HttpStatus.CREATED);
 	}
 	@PutMapping("/personnages")
-	public ResponseEntity<Partie> update(@RequestBody Partie personnage) {
+	public ResponseEntity<Personnage> update(@RequestBody Personnage personnage) {
 		if (personnage.getId() == 0) {
 			return create(personnage);
 		}
 		personnage = personnageDao.update(personnage);
 
-		return new ResponseEntity<Partie>(personnage, HttpStatus.OK);
+		return new ResponseEntity<Personnage>(personnage, HttpStatus.OK);
 	}
 	
     @ExceptionHandler({ Exception.class })
