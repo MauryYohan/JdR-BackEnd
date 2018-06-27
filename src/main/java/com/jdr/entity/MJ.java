@@ -18,11 +18,6 @@ public class MJ extends Utilisateur
 {
 //Attributs-------------------------------------------------------------------
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@JsonView(Views.Common.class)
-	private int id;
-	
 	@OneToMany(mappedBy="mj", fetch = FetchType.EAGER)
 	@JsonView(Views.MJWithPartie.class)
 	private Set<Partie> partie;
@@ -34,14 +29,6 @@ public class MJ extends Utilisateur
 	public MJ(String mail, String login,String pseudo, String motDePasse) 
 	{
 		super(mail,login, pseudo, motDePasse);
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public Set<Partie> getPartie() {

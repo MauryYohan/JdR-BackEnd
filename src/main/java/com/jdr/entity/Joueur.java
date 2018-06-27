@@ -1,6 +1,7 @@
 package com.jdr.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -22,11 +24,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Joueur extends Utilisateur 
 {
-//Attributs-------------------------------------------------------------------
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@JsonView(Views.Common.class)
-	private int id;
+//Attributs------------------------------------------------------------------
 	
 	@ManyToMany(fetch = FetchType.EAGER) // dans ensemble car c'est le proprio et non le detenu.
 	@JoinTable(name="Joueur_Partie",
@@ -35,6 +33,10 @@ public class Joueur extends Utilisateur
 	@JsonView(Views.JoueurWithPartie.class)
 	private List<Partie> listPartie; 
 	
+	@OneToMany(mappedBy="joueurs", fetch = FetchType.EAGER)
+	@JsonView(Views.JoueurWithPersonnage.class)
+	private Set<Personnage> personnage;
+	
 //Constructeur-------------------------------------------------------------------
 	public Joueur() {}
 
@@ -42,17 +44,10 @@ public class Joueur extends Utilisateur
 		super(mail, login, pseudo, motDePasse);
 	}
 	
-	public Joueur(String mail, String login, String pseudo, String motDePasse, List<Partie> partie) {
+	public Joueur(String mail, String login, String pseudo, String motDePasse, List<Partie> partie, Set<Personnage> personnage) {
 		super(mail, login, pseudo, motDePasse);
 		this.listPartie=partie;
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+		this.personnage=personnage;
 	}
 
 	public List<Partie> getListPartie() {
@@ -62,8 +57,16 @@ public class Joueur extends Utilisateur
 	public void setListPartie(List<Partie> listPartie) {
 		this.listPartie = listPartie;
 	}
+	
+	public Set<Personnage> getPersonnage() {
+		return personnage;
+	}
 
-//Méthodes-------------------------------------------------------------------
+	public void setPersonnage(Set<Personnage> personnage) {
+		this.personnage = personnage;
+	}
+
+	//Méthodes-------------------------------------------------------------------
 	protected void devenirMJ() 
 	{
 		this.devenirMJ();

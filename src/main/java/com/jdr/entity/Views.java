@@ -6,8 +6,9 @@ public interface Views {
 	
 	public interface Joueur extends Common{}
 	public interface JoueurWithPartie extends Joueur{}
-	
-	
+	public interface JoueurWithPersonnage extends Joueur{}
+	public interface JoueurWithEverything extends JoueurWithPersonnage, JoueurWithPartie{}
+
 	public interface MJ extends Common{}
 	public interface MJWithPartie extends MJ{}
 	
@@ -22,6 +23,8 @@ public interface Views {
 	
 	public interface Personnage extends Common{}
 	public interface PersonnageWithPartie extends Personnage{}
+	public interface PersonnageWithJoueur extends Personnage{}
+	public interface PersonnageWithEverything extends PersonnageWithJoueur, PersonnageWithPartie{}
 	
 	public interface Image extends Common{}
 	public interface ImageWithPartie extends Partie{}
