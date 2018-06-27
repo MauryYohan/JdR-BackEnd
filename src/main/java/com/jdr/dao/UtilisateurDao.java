@@ -4,4 +4,5 @@ import com.jdr.entity.Utilisateur;
 
 public interface UtilisateurDao extends GenericDao<Utilisateur, Integer>{
 
+	Utilisateur findIdByLogin(String login);
 }
