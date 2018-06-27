@@ -47,5 +47,11 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		return em.merge(entity);
 	}
 
+	@Override
+	public Utilisateur findIdByLogin(String login) {
+		Utilisateur user = em.find(Utilisateur.class, login);
+		return user;
+	}
+
 
 }
