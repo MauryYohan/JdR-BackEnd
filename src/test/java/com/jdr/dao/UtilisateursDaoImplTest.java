@@ -4,7 +4,6 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.apache.commons.logging.Log;
@@ -19,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.jdr.entity.Utilisateur;
 
-import junit.framework.Assert;
+import org.junit.Assert; ;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -38,7 +37,6 @@ public class UtilisateursDaoImplTest {
 		
 		Utilisateur u = new Utilisateur();
 		u.setMail("jdfkqj@hotmail.fr");
-		u.setLogin("Jaja");
 		u.setPseudo("abliblu");
 		u.setMotDePasse("4547");
 		userDao.save(u);
@@ -51,7 +49,6 @@ public class UtilisateursDaoImplTest {
 		
 		Utilisateur u1 = new Utilisateur();
 		u1.setMail("aaaaaa@hotmail.fr");
-		u1.setLogin("Baba");
 		u1.setPseudo("valalia");
 		u1.setMotDePasse("4673");
 		userDao.save(u1);
@@ -64,7 +61,6 @@ public class UtilisateursDaoImplTest {
 		
 		Utilisateur u2 = new Utilisateur();
 		u2.setMail("bbbbbb@hotmail.fr");
-		u2.setLogin("Lala");
 		u2.setPseudo("blablo");
 		u2.setMotDePasse("3745");
 		userDao.save(u2);
@@ -78,8 +74,7 @@ public class UtilisateursDaoImplTest {
 	
 	@Test
 	public void testCountFindAll() {
-		Assert.assertTrue("", this.userDao.count() == 2);
-		Assert.assertTrue("", this.userDao.findAll().iterator().hasNext());
+		Assert.assertEquals(3, this.userDao.count(listUser));
 	}
 
 	@Test
@@ -103,7 +98,7 @@ public class UtilisateursDaoImplTest {
 	}
 
 	@Test
-	public void testFindIdByLogin() {
+	public void testFindIdByPseudo() {
 		fail("Not yet implemented");
 	}
 
