@@ -4,6 +4,7 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.apache.commons.logging.Log;
@@ -17,6 +18,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.jdr.entity.Utilisateur;
+
+import junit.framework.Assert;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -74,8 +77,10 @@ public class UtilisateursDaoImplTest {
 	}
 	
 	@Test
-	public void testFindAll() {
-		fail("Not yet implemented");
+	public void testCountFindAll() {
+		Assert.assertTrue(this.userDao.findAll().iterator().hasNext());
+		Assert.assertTrue(this.userDao.count() == 2);
+		Assert.assertTrue("", condition);
 	}
 
 	@Test
