@@ -1,7 +1,6 @@
 package com.jdr.dao;
 
 import static org.junit.Assert.fail;
-
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -78,8 +77,8 @@ public class UtilisateursDaoImplTest {
 	
 	@Test
 	public void testCountFindAll() {
-		Assert.assertTrue(userDao.findAll().iterator().hasNext());
-		Assert.assertTrue(userDao.count(listUser) == 3);
+		Assert.assertTrue(this.userDao.findAll().iterator().hasNext());
+		Assert.assertTrue(this.userDao.count(listUser) == 3);
 	}
 
 	@Test
