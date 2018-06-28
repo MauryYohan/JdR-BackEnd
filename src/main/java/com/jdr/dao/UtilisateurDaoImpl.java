@@ -48,8 +48,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	}
 
 	@Override
-	public Utilisateur findIdByLogin(String login) {
-		Utilisateur user = em.find(Utilisateur.class, login);
+	public Utilisateur findIdByPseudo(String pseudo) {
+		Utilisateur user = em.find(Utilisateur.class, pseudo);
 		return user;
 	}
 

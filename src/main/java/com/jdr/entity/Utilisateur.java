@@ -32,10 +32,6 @@ public class Utilisateur
 	@JsonView(Views.Common.class)
 	protected String mail;
 	
-	@Column(name="login_utilisateur", length=30)
-	@JsonView(Views.Common.class)
-	protected String login;
-	
 	@Column(name="motDePasse_utilisateur", length=30)
 	@JsonView(Views.Common.class)
 	protected String motDePasse;
@@ -55,14 +51,12 @@ public class Utilisateur
 	public Utilisateur (String mail, String login,String pseudo, String motDePasse) 
 	{
 		this.mail=mail;
-		this.login=login;//this= instance de l'objet sur lequel je travail. Attribut de l'objet=l'argument
 		this.motDePasse=motDePasse;
 		this.pseudo=pseudo;
 	}
 	
 	public Utilisateur (String login, String motDePasse) //ca c'est le constructeur car il y'a le nom de la classe et pas de retour
 	{
-		this.login=login;//this= instance de l'objet sur lequel je travail. Attribut de l'objet=l'argument
 		this.motDePasse=motDePasse;
 	}
 
@@ -82,14 +76,6 @@ public class Utilisateur
 
 	public void setMail(String mail) {
 		this.mail = mail;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 	public String getMotDePasse() {
