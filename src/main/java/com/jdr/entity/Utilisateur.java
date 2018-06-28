@@ -49,7 +49,7 @@ public class Utilisateur
 	
 	public Utilisateur() {}
 	
-	public Utilisateur (String mail, String login,String pseudo, String motDePasse) 
+	public Utilisateur (String mail, String pseudo, String motDePasse) 
 	{
 		this.mail=mail;
 		this.motDePasse=motDePasse;

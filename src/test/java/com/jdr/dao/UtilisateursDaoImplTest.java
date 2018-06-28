@@ -30,55 +30,40 @@ public class UtilisateursDaoImplTest {
 	List<Utilisateur> listUser;
 	
 	Log log = LogFactory.getLog(Utilisateur.class);
+	long idTested;
 	
 	@Before
 	public void setUp() throws Exception {
 		
-		Utilisateur u = new Utilisateur();
-		u.setMail("jdfkqj@hotmail.fr");
-		u.setPseudo("abliblu");
-		u.setMotDePasse("4547");
-		userDao.save(u);
+		Utilisateur u1 = new Utilisateur("jdfkqj@hotmail.fr", "abliblu", "4547");
+		Utilisateur u2 = new Utilisateur("aaaaaa@hotmail.fr", "valalia", "4673");
+		Utilisateur u3 = new Utilisateur("bbbbbb@hotmail.fr", "blablo", "3745");
 		
-		this.log.info("Creation d'une entite Utilisateur");		
-		this.log.info("Creation en cours...");
-		this.userDao.save(u);
-		this.log.info("Utilisateur Cree : "+u);
-		
-		
-		Utilisateur u1 = new Utilisateur();
-		u1.setMail("aaaaaa@hotmail.fr");
-		u1.setPseudo("valalia");
-		u1.setMotDePasse("4673");
 		userDao.save(u1);
-		
-		this.log.info("Creation d'une entite Utilisateur");		
-		this.log.info("Creation en cours...");
-		this.userDao.save(u1);
-		this.log.info("ActivityType Created:"+u1);
-		
-		
-		Utilisateur u2 = new Utilisateur();
-		u2.setMail("bbbbbb@hotmail.fr");
-		u2.setPseudo("blablo");
-		u2.setMotDePasse("3745");
 		userDao.save(u2);
+		userDao.save(u3);
 		
-		this.log.info("Creation d'une entite Utilisateur");		
-		this.log.info("Creation en cours...");
-		this.userDao.save(u2);
-		this.log.info("ActivityType Created:"+u2);
-		
-		listUser.add(u);
-		listUser.add(u1);
-		listUser.add(u2);
+		int id  = u1.getId();
+		int id1 = u2.getId();
+		int id2 = u3.getId();
 
+		Utilisateur ubdd1 = userDao.findByPrimaryKey(id);
+		Assert.assertNotNull(ubdd1);
+		Assert.assertTrue(ubdd1.getMail().equals("jdfkqj@hotmail.fr"));
+		
+		Utilisateur ubdd2 = userDao.findByPrimaryKey(id1);
+		Assert.assertNotNull(ubdd2);
+		Assert.assertTrue(ubdd2.getMail().equals("aaaaaa@hotmail.fr"));
+		
+		Utilisateur ubdd3 = userDao.findByPrimaryKey(id2);
+		Assert.assertNotNull(ubdd3);
+		Assert.assertTrue(ubdd3.getMail().equals("bbbbbb@hotmail.fr"));
 	}
 	
 	@Test
-	public void testCountFindAll() {
-		Assert.assertTrue(this.userDao.findAll().iterator().hasNext());
-		Assert.assertTrue(this.userDao.count(listUser) == 3);
+	public void testFindAll() {
+		listUser = userDao.findAll();
+		Assert.assertEquals(3, listUser.size());
 	}
 
 	@Test

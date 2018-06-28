@@ -40,12 +40,12 @@ public class Joueur extends Utilisateur
 //Constructeur-------------------------------------------------------------------
 	public Joueur() {}
 
-	public Joueur(String mail, String login, String pseudo, String motDePasse) {
-		super(mail, login, pseudo, motDePasse);
+	public Joueur(String mail, String pseudo, String motDePasse) {
+		super(mail, pseudo, motDePasse);
 	}
 	
-	public Joueur(String mail, String login, String pseudo, String motDePasse, List<Partie> partie, Set<Personnage> personnage) {
-		super(mail, login, pseudo, motDePasse);
+	public Joueur(String mail, String pseudo, String motDePasse, List<Partie> partie, Set<Personnage> personnage) {
+		super(mail, pseudo, motDePasse);
 		this.listPartie=partie;
 		this.personnage=personnage;
 	}
