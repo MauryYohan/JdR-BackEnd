@@ -78,9 +78,8 @@ public class UtilisateursDaoImplTest {
 	
 	@Test
 	public void testCountFindAll() {
-		Assert.assertTrue(this.userDao.findAll().iterator().hasNext());
-		Assert.assertTrue(this.userDao.count() == 2);
-		Assert.assertTrue("", condition);
+		Assert.assertTrue("", this.userDao.count() == 2);
+		Assert.assertTrue("", this.userDao.findAll().iterator().hasNext());
 	}
 
 	@Test
