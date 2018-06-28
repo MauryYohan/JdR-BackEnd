@@ -74,30 +74,4 @@ public class UtilisateursDaoImplTest {
 		Assert.assertEquals("coucou", u3.getPseudo());
 		Assert.assertEquals("3429", u3.getMotDePasse());
 	}
-
-	@Test
-	public void testDelete() {
-		
-		Utilisateur u4 = this.userDao.findAll().iterator().next();	
-		long id = u4.getId();
-		
-		this.userDao.delete(u4);	
-		Assert.assertFalse(userDao.findByPrimaryKey(id) == null);
-	}
-
-	@Test
-	public void testFindByPrimaryKey() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUpdate() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFindIdByPseudo() {
-		fail("Not yet implemented");
-	}
-
 }
