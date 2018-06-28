@@ -69,12 +69,17 @@ public class UtilisateursDaoImplTest {
 		this.log.info("Creation en cours...");
 		this.userDao.save(u2);
 		this.log.info("ActivityType Created:"+u2);
+		
+		listUser.add(u);
+		listUser.add(u1);
+		listUser.add(u2);
 
 	}
 	
 	@Test
 	public void testCountFindAll() {
-		Assert.assertEquals(3, this.userDao.count(listUser));
+		Assert.assertTrue(userDao.findAll().iterator().hasNext());
+		Assert.assertTrue(userDao.count(listUser) == 3);
 	}
 
 	@Test
