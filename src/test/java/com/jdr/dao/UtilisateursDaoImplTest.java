@@ -69,7 +69,7 @@ public class UtilisateursDaoImplTest {
 	@Test
 	public void testSave() {
 		Utilisateur u3 = new Utilisateur("cccccc@hotmail.fr", "coucou", "3429");
-		userDao.save(u3);
+		Assert.assertNotNull(userDao.save(u3));
 		Assert.assertEquals("cccccc@hotmail.fr", u3.getMail());
 		Assert.assertEquals("coucou", u3.getPseudo());
 		Assert.assertEquals("3429", u3.getMotDePasse());
@@ -77,7 +77,12 @@ public class UtilisateursDaoImplTest {
 
 	@Test
 	public void testDelete() {
-		fail("Not yet implemented");
+		
+		Utilisateur u4 = this.userDao.findAll().iterator().next();	
+		long id = u4.getId();
+		
+		this.userDao.delete(u4);	
+		Assert.assertFalse(userDao.findByPrimaryKey(id) == null);
 	}
 
 	@Test

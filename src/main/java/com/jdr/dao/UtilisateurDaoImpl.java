@@ -62,4 +62,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		return compteur;
 	}
 
+	public Utilisateur findByPrimaryKey(long id) {
+		return em.find(Utilisateur.class, id);
+	}
+
 }
