@@ -1,11 +1,14 @@
 package com.jdr.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
+
+import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,26 +26,51 @@ public class UtilisateursDaoImplTest {
 	
 	@Autowired
 	UtilisateurDaoImpl userDao;
+	List<Utilisateur> listUser;
 	
-	Utilisateur u;
-	Utilisateur u1;
-	Utilisateur u2;
+	Log log = LogFactory.getLog(Utilisateur.class);
 	
 	@Before
 	public void setUp() throws Exception {
-		/* First Arguments = mail
-		 * Second Args = login
-		 * Third Args = pseudo		 
-		 * Fourth Args = motDePasse
-		 * string *4
-		 */
-		u = new Utilisateur("jdfkqj@hotmail.fr","Jaja", "abliblu", "4547");
-		u1 = new Utilisateur("aaaaaa@hotmail.fr","Baba", "valalia", "4673");
-		u2 = new Utilisateur("bbbbbb@hotmail.fr","Lala", "blablo", "3745");
 		
+		Utilisateur u = new Utilisateur();
+		u.setMail("jdfkqj@hotmail.fr");
+		u.setLogin("Jaja");
+		u.setPseudo("abliblu");
+		u.setMotDePasse("4547");
 		userDao.save(u);
+		
+		this.log.info("Creation d'une entite Utilisateur");		
+		this.log.info("Creation en cours...");
+		this.userDao.save(u);
+		this.log.info("Utilisateur Cree : "+u);
+		
+		
+		Utilisateur u1 = new Utilisateur();
+		u1.setMail("aaaaaa@hotmail.fr");
+		u1.setLogin("Baba");
+		u1.setPseudo("valalia");
+		u1.setMotDePasse("4673");
 		userDao.save(u1);
+		
+		this.log.info("Creation d'une entite Utilisateur");		
+		this.log.info("Creation en cours...");
+		this.userDao.save(u1);
+		this.log.info("ActivityType Created:"+u1);
+		
+		
+		Utilisateur u2 = new Utilisateur();
+		u2.setMail("bbbbbb@hotmail.fr");
+		u2.setLogin("Lala");
+		u2.setPseudo("blablo");
+		u2.setMotDePasse("3745");
 		userDao.save(u2);
+		
+		this.log.info("Creation d'une entite Utilisateur");		
+		this.log.info("Creation en cours...");
+		this.userDao.save(u2);
+		this.log.info("ActivityType Created:"+u2);
+
 	}
 	
 	@Test

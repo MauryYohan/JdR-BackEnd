@@ -48,6 +48,7 @@ public class Utilisateur
 	@JsonView(Views.Common.class)
 	public String pseudo;
 
+
 //Constructeur-------------------------------------------------------------------
 	
 	public Utilisateur() {}
@@ -151,6 +152,11 @@ public class Utilisateur
 	
 	protected void discuterDansLaPartie(){
 		
+	}
+
+	public Object getFields() {
+		// TODO Equivalence du ToString
+		return null;
 	}
 	
 }
