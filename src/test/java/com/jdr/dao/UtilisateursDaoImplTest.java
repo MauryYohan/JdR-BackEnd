@@ -68,7 +68,11 @@ public class UtilisateursDaoImplTest {
 
 	@Test
 	public void testSave() {
-		fail("Not yet implemented");
+		Utilisateur u3 = new Utilisateur("cccccc@hotmail.fr", "coucou", "3429");
+		userDao.save(u3);
+		Assert.assertEquals("cccccc@hotmail.fr", u3.getMail());
+		Assert.assertEquals("coucou", u3.getPseudo());
+		Assert.assertEquals("3429", u3.getMotDePasse());
 	}
 
 	@Test
