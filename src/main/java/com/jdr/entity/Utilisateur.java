@@ -103,6 +103,7 @@ public class Utilisateur
 // Methodes-------------------------------------------------------------------
 	public void seConnecter() 
 	{
+		
 	}
 	
 	public void creerUnCompte() 
