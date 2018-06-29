@@ -1,7 +1,5 @@
 package com.jdr.entity;
 
-import java.util.Scanner;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
@@ -49,7 +46,7 @@ public class Utilisateur
 	
 	public Utilisateur() {}
 	
-	public Utilisateur (String mail, String login,String pseudo, String motDePasse) 
+	public Utilisateur (String mail, String pseudo, String motDePasse) 
 	{
 		this.mail=mail;
 		this.motDePasse=motDePasse;
@@ -106,6 +103,7 @@ public class Utilisateur
 // Methodes-------------------------------------------------------------------
 	public void seConnecter() 
 	{
+		
 	}
 	
 	public void creerUnCompte() 

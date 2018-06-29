@@ -28,7 +28,7 @@ public class UtililsateursTest {
 	
 	Log log = LogFactory.getLog(Utilisateur.class);
 	long idTested;
-	
+	/*
 	@Test
 	public void populate(){
 		Utilisateur u = new Utilisateur("jdfkqj@hotmail.fr","jjjjj", "kkkk", "1234");
@@ -44,7 +44,5 @@ public class UtililsateursTest {
 		Utilisateur ubdd = userDao.findByPrimaryKey(id);
 		Assert.assertNotNull(ubdd);
 		Assert.assertTrue(ubdd.getMail().equals("jdfkqj@hotmail.fr"));
-		
+	*/
 	}
-
-}

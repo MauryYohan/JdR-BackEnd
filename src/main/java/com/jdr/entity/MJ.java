@@ -26,9 +26,9 @@ public class MJ extends Utilisateur
 	
 	public MJ() {}
 	
-	public MJ(String mail, String login,String pseudo, String motDePasse) 
+	public MJ(String mail, String pseudo, String motDePasse) 
 	{
-		super(mail,login, pseudo, motDePasse);
+		super(mail, pseudo, motDePasse);
 	}
 
 	public Set<Partie> getPartie() {

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
@@ -34,9 +35,35 @@ public class UtilisateurController {
 	
 	@GetMapping("/utilisateurs/{id}")
 	@JsonView(com.jdr.entity.Views.Utilisateur.class)
-	public ResponseEntity<Utilisateur> findOne(@PathVariable("id") Integer id){
+	public ResponseEntity<Utilisateur> findOne2(@PathVariable("id") Integer id){
 		
 		Utilisateur b = utilisateurDao.findByPrimaryKey(id);
+		
+		if(b == null) {
+			return new ResponseEntity<Utilisateur>(b, HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<Utilisateur>(b, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/utilisateurs/{mail}")
+	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> findOne3(@PathVariable("mail") String mail){
+		
+		Utilisateur b = utilisateurDao.findIdByMail(mail);
+		
+		if(b == null) {
+			return new ResponseEntity<Utilisateur>(b, HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<Utilisateur>(b, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/utilisateurs/{pseudo}")
+	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> findOne(@PathVariable("pseudo") String pseudo){
+		
+		Utilisateur b = utilisateurDao.findIdByPseudo(pseudo);
 		
 		if(b == null) {
 			return new ResponseEntity<Utilisateur>(b, HttpStatus.NOT_FOUND);

@@ -23,6 +23,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		String querystring = "SELECT u FROM Utilisateur u ORDER BY id" ;
 		Query query = em.createQuery( querystring ) ;
 		List<Utilisateur> list = query.getResultList() ;
+		int numRow = count(list);
 		return list;
 	}
 
@@ -53,5 +54,22 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		return user;
 	}
 
+	public int count(List<Utilisateur> list) {
+		int compteur = 0;
+		for (Utilisateur user : list) {
+		    compteur += 1;
+		}
+		return compteur;
+	}
+
+	public Utilisateur findByPrimaryKey(long id) {
+		return em.find(Utilisateur.class, id);
+	}
+
+	@Override
+	public Utilisateur findIdByMail(String mail) {
+		Utilisateur user = em.find(Utilisateur.class, mail);
+		return user;
+	}
 
 }
