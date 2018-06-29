@@ -69,30 +69,9 @@ public class UtilisateursDaoImplTest {
 	@Test
 	public void testSave() {
 		Utilisateur u3 = new Utilisateur("cccccc@hotmail.fr", "coucou", "3429");
-		userDao.save(u3);
+		Assert.assertNotNull(userDao.save(u3));
 		Assert.assertEquals("cccccc@hotmail.fr", u3.getMail());
 		Assert.assertEquals("coucou", u3.getPseudo());
 		Assert.assertEquals("3429", u3.getMotDePasse());
 	}
-
-	@Test
-	public void testDelete() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFindByPrimaryKey() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testUpdate() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testFindIdByPseudo() {
-		fail("Not yet implemented");
-	}
-
 }

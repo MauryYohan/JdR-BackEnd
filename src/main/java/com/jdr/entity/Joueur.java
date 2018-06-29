@@ -26,7 +26,7 @@ public class Joueur extends Utilisateur
 {
 //Attributs------------------------------------------------------------------
 	
-	@ManyToMany(fetch = FetchType.EAGER) // dans ensemble car c'est le proprio et non le detenu.
+	@ManyToMany(fetch = FetchType.LAZY) // dans ensemble car c'est le proprio et non le detenu.
 	@JoinTable(name="Joueur_Partie",
 	joinColumns=@JoinColumn(name="Joueur_id"),
 	inverseJoinColumns=@JoinColumn(name="Partie_id"))

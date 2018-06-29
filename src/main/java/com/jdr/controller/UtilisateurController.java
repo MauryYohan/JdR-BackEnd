@@ -45,6 +45,19 @@ public class UtilisateurController {
 		}
 	}
 	
+	@GetMapping("/utilisateurs/{mail}")
+	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	public ResponseEntity<Utilisateur> findOne(@PathVariable("mail") String mail){
+		
+		Utilisateur b = utilisateurDao.findIdByMail(mail);
+		
+		if(b == null) {
+			return new ResponseEntity<Utilisateur>(b, HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<Utilisateur>(b, HttpStatus.OK);
+		}
+	}
+	
 	@GetMapping("/utilisateurs")
 	@JsonView(com.jdr.entity.Views.Utilisateur.class)
 	public ResponseEntity<List<Utilisateur>> findAll() {
