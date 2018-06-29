@@ -66,4 +66,10 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		return em.find(Utilisateur.class, id);
 	}
 
+	@Override
+	public Utilisateur findIdByMail(String mail) {
+		Utilisateur user = em.find(Utilisateur.class, mail);
+		return user;
+	}
+
 }
