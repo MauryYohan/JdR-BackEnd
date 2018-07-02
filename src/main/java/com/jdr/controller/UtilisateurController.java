@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,14 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.WebRequest;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.jdr.dao.UtilisateurDao;
 import com.jdr.entity.Utilisateur;
-import com.jdr.entity.Views;
 
 
 @RestController
@@ -33,9 +29,10 @@ public class UtilisateurController {
 	@Autowired	
 	UtilisateurDao utilisateurDao;
 	
-	@GetMapping("/utilisateurs/{id}")
+	@GetMapping("/utilisateurs/id/{id}")
 	@JsonView(com.jdr.entity.Views.Utilisateur.class)
-	public ResponseEntity<Utilisateur> findOne2(@PathVariable("id") Integer id){
+	@CrossOrigin
+	public ResponseEntity<Utilisateur> findOne(@PathVariable("id") Integer id){
 		
 		Utilisateur b = utilisateurDao.findByPrimaryKey(id);
 		
@@ -46,9 +43,10 @@ public class UtilisateurController {
 		}
 	}
 	
-	@GetMapping("/utilisateurs/{mail}")
+	@GetMapping("/utilisateurs/mail/{mail}")
 	@JsonView(com.jdr.entity.Views.Utilisateur.class)
-	public ResponseEntity<Utilisateur> findOne3(@PathVariable("mail") String mail){
+	@CrossOrigin
+	public ResponseEntity<Utilisateur> findTwo(@PathVariable("mail") String mail){
 		
 		Utilisateur b = utilisateurDao.findIdByMail(mail);
 		
@@ -59,9 +57,10 @@ public class UtilisateurController {
 		}
 	}
 	
-	@GetMapping("/utilisateurs/{pseudo}")
+	@GetMapping("/utilisateurs/pseudo/{pseudo}")
 	@JsonView(com.jdr.entity.Views.Utilisateur.class)
-	public ResponseEntity<Utilisateur> findOne(@PathVariable("pseudo") String pseudo){
+	@CrossOrigin
+	public ResponseEntity<Utilisateur> findThree(@PathVariable("pseudo") String pseudo){
 		
 		Utilisateur b = utilisateurDao.findIdByPseudo(pseudo);
 		
@@ -74,13 +73,15 @@ public class UtilisateurController {
 	
 	@GetMapping("/utilisateurs")
 	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	@CrossOrigin
 	public ResponseEntity<List<Utilisateur>> findAll() {
 		List<Utilisateur> utilisateurs = utilisateurDao.findAll();
 		return new ResponseEntity<List<Utilisateur>>(utilisateurs, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/utilisateurs/{id}")
+	@DeleteMapping("/utilisateurs/id/{id}")
 	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	@CrossOrigin
 	public ResponseEntity<Utilisateur> delete(@PathVariable("id") Integer id){
 		Utilisateur tmp = utilisateurDao.findByPrimaryKey(id);
 		if (tmp == null) {
@@ -93,6 +94,7 @@ public class UtilisateurController {
 	
 	@PostMapping("/utilisateurs")
 	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	@CrossOrigin
 	public ResponseEntity<Utilisateur> create(@Valid @RequestBody Utilisateur utilisateur) {
 		if (utilisateur.getId() > 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -102,6 +104,7 @@ public class UtilisateurController {
 	}
 	@PutMapping("/utilisateurs")
 	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	@CrossOrigin
 	public ResponseEntity<Utilisateur> update(@RequestBody Utilisateur utilisateur) {
 		if (utilisateur.getId() == 0) {
 			return create(utilisateur);
