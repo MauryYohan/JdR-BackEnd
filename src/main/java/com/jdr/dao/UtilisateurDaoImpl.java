@@ -72,4 +72,9 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 		return user;
 	}
 
+	@Override
+	public Utilisateur findByUID(String uid) {
+		return em.find(Utilisateur.class, uid);
+	}
+
 }

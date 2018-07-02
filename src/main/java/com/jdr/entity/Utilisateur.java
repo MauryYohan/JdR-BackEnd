@@ -25,6 +25,10 @@ public class Utilisateur
 	@Column(name="id_utilisateur")
 	private int id;
 	
+	@Column(name="uid", length=28)
+	@JsonView(Views.Common.class)
+	protected String uid;
+	
 	@Column(name="mail_utilisateur", length=75)
 	@JsonView(Views.Common.class)
 	protected String mail;
@@ -46,11 +50,19 @@ public class Utilisateur
 	
 	public Utilisateur() {}
 	
+	public Utilisateur (String uid, String mail, String pseudo, String motDePasse) 
+	{
+		this.uid = uid;
+		this.mail  =mail;
+		this.pseudo = pseudo;
+		this.motDePasse = motDePasse;
+	}
+	
 	public Utilisateur (String mail, String pseudo, String motDePasse) 
 	{
 		this.mail=mail;
-		this.motDePasse=motDePasse;
 		this.pseudo=pseudo;
+		this.motDePasse=motDePasse;
 	}
 	
 	public Utilisateur (String login, String motDePasse) //ca c'est le constructeur car il y'a le nom de la classe et pas de retour
