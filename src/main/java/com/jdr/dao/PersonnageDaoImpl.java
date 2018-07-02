@@ -22,6 +22,7 @@ public class PersonnageDaoImpl implements PersonnageDao{
 	public List<Personnage> findAll() {
 		String querystring = "SELECT p FROM Personnage p ORDER BY id" ;
 		Query query = em.createQuery( querystring ) ;
+		@SuppressWarnings("unchecked")
 		List<Personnage> list = query.getResultList() ;
 		return list;
 	}

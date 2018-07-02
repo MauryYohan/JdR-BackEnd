@@ -90,15 +90,15 @@ public class Personnage {
 	private Partie partie;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonView(Views.PersonnageWithJoueur.class)
-	private Joueur joueurs;
+	@JsonView(Views.PersonnageWithUtilisateur.class)
+	private Utilisateur utilisateurs;
 
 //Constructeurs-------------------------------------------------------------------
 	public Personnage() {}
 	
 	public Personnage(@NotNull String nom, @NotNull String classe, @NotNull int pv, @NotNull int puissance,
 			@NotNull int defense, @NotNull int esprit, @NotNull int intelligence, @NotNull int init, String equipement,
-			String inventaire, String background, @NotNull String race, @NotNull String sexe, Partie partie, Joueur joueurs) {
+			String inventaire, String background, @NotNull String race, @NotNull String sexe, Partie partie, Utilisateur utilisateurs) {
 		super();
 		this.nom = nom;
 		this.classe = classe;
@@ -114,7 +114,7 @@ public class Personnage {
 		this.race = race;
 		this.sexe = sexe;
 		this.partie = partie;
-		this.joueurs=joueurs;
+		this.utilisateurs=utilisateurs;
 	}
 
 	
@@ -240,13 +240,14 @@ public class Personnage {
 		this.partie = partie;
 	}
 
-	public Joueur getJoueurs() {
-		return joueurs;
+	public Utilisateur getUtilisateurs() {
+		return utilisateurs;
 	}
 
-	public void setJoueurs(Joueur joueurs) {
-		this.joueurs = joueurs;
+	public void setUtilisateurs(Utilisateur utilisateurs) {
+		this.utilisateurs = utilisateurs;
 	}
 
+	
 	
 }

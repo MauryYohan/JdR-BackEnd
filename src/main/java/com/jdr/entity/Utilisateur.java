@@ -1,16 +1,21 @@
 package com.jdr.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.jdr.entity.Views;
+import com.jdr.entity.Views.UtilisateurWithPartie;
 
 @Entity
 @Table(name="Utilisateur")
@@ -25,9 +30,11 @@ public class Utilisateur
 	@Column(name="id_utilisateur")
 	private int id;
 	
-	@Column(name="uid", length=28)
+	/*
+	@Column(name="uid_utilisateur", length=28)
 	@JsonView(Views.Common.class)
 	protected String uid;
+	*/
 	
 	@Column(name="mail_utilisateur", length=75)
 	@JsonView(Views.Common.class)
@@ -44,30 +51,43 @@ public class Utilisateur
 	@Column(name="pseudo_utilisateur", length=30)
 	@JsonView(Views.Common.class)
 	public String pseudo;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JsonView(UtilisateurWithPartie.class)
+	private List<Partie> listPartie;
+	
+	@Column(name="role_utilisateur")
+	@JsonView(Views.Common.class)
+	public Boolean estUnMJ;
 
 
 //Constructeur-------------------------------------------------------------------
 	
 	public Utilisateur() {}
 	
-	public Utilisateur (String uid, String mail, String pseudo, String motDePasse) 
+	// Commonly constructor to use
+	public Utilisateur(int id, String mail, String motDePasse, String avatar, String pseudo) {
+		this.id = id;
+		this.mail = mail;
+		this.motDePasse = motDePasse;
+		this.avatar = avatar;
+		this.pseudo = pseudo;
+		this.estUnMJ = false;
+	}
+
+	public Utilisateur (String mail, String pseudo, String motDePasse) 
 	{
-		this.uid = uid;
 		this.mail  =mail;
 		this.pseudo = pseudo;
 		this.motDePasse = motDePasse;
+		this.estUnMJ = false;
 	}
 	
-	public Utilisateur (String mail, String pseudo, String motDePasse) 
+	public Utilisateur (String mail, String motDePasse)
 	{
-		this.mail=mail;
-		this.pseudo=pseudo;
+		this.mail = mail;
 		this.motDePasse=motDePasse;
-	}
-	
-	public Utilisateur (String login, String motDePasse) //ca c'est le constructeur car il y'a le nom de la classe et pas de retour
-	{
-		this.motDePasse=motDePasse;
+		this.estUnMJ = false;
 	}
 
 //Getters setters-------------------------------------------------------------------
@@ -112,48 +132,34 @@ public class Utilisateur
 		this.pseudo = pseudo;
 	}
 
-// Methodes-------------------------------------------------------------------
-	public void seConnecter() 
-	{
-		
-	}
-	
-	public void creerUnCompte() 
-	{
-		
-	}
-	
-	protected void modifierSonCompte(){
-		
-	}
-	
-	protected void SeDeconnecter(){
-		
-	}
-	
-	protected void recupererSonIdentifiant(){
-		
-	}
-	
-	protected void recupererSonMdp() {
-	}
-	
-	protected void discuterSalleAttente() {
-		
-	}
-	
-	protected void lancerLesDes() {
-		
-	}
-	
-	protected void discuterDansLaPartie(){
-		
+	/**
+	 * @return the estUnMJ
+	 */
+	public Boolean getEstUnMJ() {
+		return estUnMJ;
 	}
 
-	public Object getFields() {
-		// TODO Equivalence du ToString
-		return null;
+	/**
+	 * @param estUnMJ the estUnMJ to set
+	 */
+	public void setEstUnMJ(Boolean estUnMJ) {
+		this.estUnMJ = estUnMJ;
 	}
+
+	/**
+	 * @return the partie
+	 */
+	public List<Partie> getPartie() {
+		return listPartie;
+	}
+
+	/**
+	 * @param partie the partie to set
+	 */
+	public void setPartie(List<Partie> listPartie) {
+		this.listPartie = listPartie;
+	}
+
 	
 }
 

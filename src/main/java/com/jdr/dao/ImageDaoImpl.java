@@ -22,6 +22,7 @@ public class ImageDaoImpl implements ImageDao{
 	public List<Image> findAll() {
 		String querystring = "SELECT j FROM Image j ORDER BY id" ;
 		Query query = em.createQuery( querystring ) ;
+		@SuppressWarnings("unchecked")
 		List<Image> list = query.getResultList() ;
 		return list;
 	}

@@ -43,19 +43,6 @@ public class UtilisateurController {
 		}
 	}
 	
-	@GetMapping("/utilisateurs/uid/{uid}")
-	@JsonView(com.jdr.entity.Views.Utilisateur.class)
-	@CrossOrigin
-	public ResponseEntity<Utilisateur> findFour(@PathVariable("uid") String uid){
-		
-		Utilisateur b = utilisateurDao.findByUID(uid);
-		
-		if(b == null) {
-			return new ResponseEntity<Utilisateur>(b, HttpStatus.NOT_FOUND);
-		}else {
-			return new ResponseEntity<Utilisateur>(b, HttpStatus.OK);
-		}
-	}
 	
 	@GetMapping("/utilisateurs/mail/{mail}")
 	@JsonView(com.jdr.entity.Views.Utilisateur.class)
