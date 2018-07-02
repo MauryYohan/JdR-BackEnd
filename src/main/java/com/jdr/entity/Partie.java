@@ -35,6 +35,10 @@ public class Partie
 	@JsonView(Views.Common.class)
 	public String ImageDeFond;
 	
+	@Column(name="description_Partie")
+	@JsonView(Views.Common.class)
+	public String Description;
+	
 	@Column(name="nb_Joueurs_Partie")
 	@NotNull
 	@JsonView(Views.Common.class)
@@ -65,13 +69,14 @@ public class Partie
 //Constructeurs-------------------------------------------------------------------
 	public Partie() {}
 	
-	public Partie(String imageDeFond, @NotNull int nbJoueurs, @NotNull String titrePartie) {
+	public Partie(String imageDeFond, @NotNull int nbJoueurs, @NotNull String titrePartie, @NotNull String description) {
 		ImageDeFond = null;
 		this.nbJoueurs = nbJoueurs;
 		this.titrePartie = titrePartie;
+		this.Description = description;
 	}
 
-	public Partie(String imageDeFond, @NotNull int nbJoueurs, @NotNull String titrePartie, MJ mj, List<Joueur> joueur,
+	public Partie(String imageDeFond, @NotNull int nbJoueurs, @NotNull String titrePartie, @NotNull String description, MJ mj, List<Joueur> joueur,
 			Set<Personnage> personnage) {
 		super();
 		ImageDeFond = imageDeFond;
@@ -112,6 +117,14 @@ public class Partie
 
 	public void setTitrePartie(String titrePartie) {
 		this.titrePartie = titrePartie;
+	}
+
+	public String getDescription() {
+		return Description;
+	}
+
+	public void setDescription(String description) {
+		Description = description;
 	}
 
 	public MJ getMj() {
