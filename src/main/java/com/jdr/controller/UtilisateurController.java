@@ -57,24 +57,9 @@ public class UtilisateurController {
 			return new ResponseEntity<Utilisateur>(b, HttpStatus.OK);
 		}
 	}
+
 	
-<<<<<<< Updated upstream
-	@GetMapping("/utilisateurs/pseudo/{pseudo}")
-	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
-	@CrossOrigin
-	public ResponseEntity<Utilisateur> findThree(@PathVariable("pseudo") String pseudo){
-		
-		Utilisateur b = utilisateurDao.findIdByPseudo(pseudo);
-		
-		if(b == null) {
-			return new ResponseEntity<Utilisateur>(b, HttpStatus.NOT_FOUND);
-		}else {
-			return new ResponseEntity<Utilisateur>(b, HttpStatus.OK);
-		}
-	}
 	
-=======
->>>>>>> Stashed changes
 	@GetMapping("/utilisateurs")
 	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
@@ -106,6 +91,7 @@ public class UtilisateurController {
 		utilisateurDao.save(utilisateur);
 		return new ResponseEntity<Utilisateur>(utilisateur, HttpStatus.CREATED);
 	}
+	
 	@PutMapping("/utilisateurs")
 	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
