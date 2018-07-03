@@ -30,7 +30,7 @@ public class UtilisateurController {
 	UtilisateurDao utilisateurDao;
 	
 	@GetMapping("/utilisateurs/id/{id}")
-	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
 	public ResponseEntity<Utilisateur> findOne(@PathVariable("id") Integer id){
 		
@@ -43,8 +43,9 @@ public class UtilisateurController {
 		}
 	}
 	
+	
 	@GetMapping("/utilisateurs/mail/{mail}")
-	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
 	public ResponseEntity<Utilisateur> findTwo(@PathVariable("mail") String mail){
 		
@@ -58,7 +59,7 @@ public class UtilisateurController {
 	}
 	
 	@GetMapping("/utilisateurs/pseudo/{pseudo}")
-	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
 	public ResponseEntity<Utilisateur> findThree(@PathVariable("pseudo") String pseudo){
 		
@@ -72,7 +73,7 @@ public class UtilisateurController {
 	}
 	
 	@GetMapping("/utilisateurs")
-	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
 	public ResponseEntity<List<Utilisateur>> findAll() {
 		List<Utilisateur> utilisateurs = utilisateurDao.findAll();
@@ -80,7 +81,7 @@ public class UtilisateurController {
 	}
 	
 	@DeleteMapping("/utilisateurs/id/{id}")
-	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
 	public ResponseEntity<Utilisateur> delete(@PathVariable("id") Integer id){
 		Utilisateur tmp = utilisateurDao.findByPrimaryKey(id);
@@ -93,7 +94,7 @@ public class UtilisateurController {
 	}
 	
 	@PostMapping("/utilisateurs")
-	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
 	public ResponseEntity<Utilisateur> create(@Valid @RequestBody Utilisateur utilisateur) {
 		if (utilisateur.getId() > 0) {
@@ -103,7 +104,7 @@ public class UtilisateurController {
 		return new ResponseEntity<Utilisateur>(utilisateur, HttpStatus.CREATED);
 	}
 	@PutMapping("/utilisateurs")
-	@JsonView(com.jdr.entity.Views.Utilisateur.class)
+	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
 	public ResponseEntity<Utilisateur> update(@RequestBody Utilisateur utilisateur) {
 		if (utilisateur.getId() == 0) {

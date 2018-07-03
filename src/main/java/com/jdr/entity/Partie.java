@@ -9,16 +9,15 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.jdr.entity.Views;
+import com.jdr.entity.Views.PartieWithUtilisateur;
 
 @Entity
 @Table(name="Partie")
@@ -54,12 +53,12 @@ public class Partie
 	private Set<Image> image;
 	
 	@ManyToOne
-	@JsonView(Views.PartieWithMJ.class)
-	private MJ mj;
+	@JsonView(Views.PartieWithUtilisateur.class)
+	private Utilisateur userMj;
 	
 	@ManyToMany(mappedBy="listPartie",fetch = FetchType.EAGER)
-	@JsonView(Views.PartieWithJoueur.class)
-	private List<Joueur> joueur;
+	@JsonView(PartieWithUtilisateur.class)
+	private List<Utilisateur> utilisateur;
 	
 	@OneToMany(mappedBy="partie", fetch = FetchType.EAGER)
 	@JsonView(Views.PartieWithPersonnage.class)
@@ -76,14 +75,15 @@ public class Partie
 		this.Description = description;
 	}
 
-	public Partie(String imageDeFond, @NotNull int nbJoueurs, @NotNull String titrePartie, @NotNull String description, MJ mj, List<Joueur> joueur,
+
+	public Partie(String imageDeFond, @NotNull int nbJoueurs, @NotNull String titrePartie, Utilisateur userMj, List<Utilisateur> utilisateur,
 			Set<Personnage> personnage) {
 		super();
 		ImageDeFond = imageDeFond;
 		this.nbJoueurs = nbJoueurs;
 		this.titrePartie = titrePartie;
-		this.mj = mj;
-		this.joueur = joueur;
+		this.userMj = userMj;
+		this.utilisateur = utilisateur;
 		this.personnage = personnage;
 	}
 
@@ -103,6 +103,14 @@ public class Partie
 		ImageDeFond = imageDeFond;
 	}
 
+	public String getDescription() {
+		return Description;
+	}
+
+	public void setDescription(String description) {
+		Description = description;
+	}
+
 	public int getNbJoueurs() {
 		return nbJoueurs;
 	}
@@ -119,28 +127,28 @@ public class Partie
 		this.titrePartie = titrePartie;
 	}
 
-	public String getDescription() {
-		return Description;
+	public Set<Image> getImage() {
+		return image;
 	}
 
-	public void setDescription(String description) {
-		Description = description;
+	public void setImage(Set<Image> image) {
+		this.image = image;
 	}
 
-	public MJ getMj() {
-		return mj;
+	public Utilisateur getUserMj() {
+		return userMj;
 	}
 
-	public void setMj(MJ mj) {
-		this.mj = mj;
+	public void setUserMj(Utilisateur userMj) {
+		this.userMj = userMj;
 	}
 
-	public List<Joueur> getJoueur() {
-		return joueur;
+	public List<Utilisateur> getUtilisateur() {
+		return utilisateur;
 	}
 
-	public void setJoueur(List<Joueur> joueur) {
-		this.joueur = joueur;
+	public void setUtilisateur(List<Utilisateur> utilisateur) {
+		this.utilisateur = utilisateur;
 	}
 
 	public Set<Personnage> getPersonnage() {
@@ -150,5 +158,7 @@ public class Partie
 	public void setPersonnage(Set<Personnage> personnage) {
 		this.personnage = personnage;
 	}
+
+	
 	
 }

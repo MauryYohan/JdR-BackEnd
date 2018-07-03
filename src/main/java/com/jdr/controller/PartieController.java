@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.WebRequest;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.jdr.dao.PartieDao;
@@ -34,6 +32,7 @@ public class PartieController {
 	
 	@GetMapping("/parties/{id}")
 	@JsonView(Views.PartieWithEverything.class)
+	@CrossOrigin
 	public ResponseEntity<Partie> findOne(@PathVariable("id") Integer id){
 		
 		Partie b = partieDao.findByPrimaryKey(id);
@@ -47,6 +46,7 @@ public class PartieController {
 	
 	@GetMapping("/parties")
 	@JsonView(Views.PartieWithEverything.class)
+	@CrossOrigin
 	public ResponseEntity<List<Partie>> findAll() {
 		List<Partie> parties = partieDao.findAll();
 		return new ResponseEntity<List<Partie>>(parties, HttpStatus.OK);
@@ -54,6 +54,7 @@ public class PartieController {
 	
 	@DeleteMapping("/parties/{id}")
 	@JsonView(Views.PartieWithEverything.class)
+	@CrossOrigin
 	public ResponseEntity<Partie> delete(@PathVariable("id") Integer id){
 		Partie tmp = partieDao.findByPrimaryKey(id);
 		if (tmp == null) {
@@ -66,6 +67,7 @@ public class PartieController {
 	
 	@PostMapping("/parties")
 	@JsonView(Views.PartieWithEverything.class)
+	@CrossOrigin
 	public ResponseEntity<Partie> create(@Valid @RequestBody Partie partie) {
 		if (partie.getId() > 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -75,6 +77,7 @@ public class PartieController {
 	}
 	@PutMapping("/parties")
 	@JsonView(Views.PartieWithEverything.class)
+	@CrossOrigin
 	public ResponseEntity<Partie> update(@RequestBody Partie partie) {
 		if (partie.getId() == 0) {
 			return create(partie);
@@ -85,6 +88,7 @@ public class PartieController {
 	}
 	
     @ExceptionHandler({ Exception.class })
+    @CrossOrigin
     public ResponseEntity<Object> errors(){
     		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
     }

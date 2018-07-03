@@ -5,7 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,12 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.WebRequest;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.jdr.dao.ImageDao;
 import com.jdr.entity.Image;
-import com.jdr.entity.Views;
 
 
 @RestController
@@ -34,6 +31,7 @@ public class ImageController {
 	
 	@GetMapping("/images/{id}")
 	@JsonView(com.jdr.entity.Views.ImageWithPartie.class)
+	@CrossOrigin
 	public ResponseEntity<Image> findOne(@PathVariable("id") Integer id){
 		
 		Image b = imageDao.findByPrimaryKey(id);
@@ -47,6 +45,7 @@ public class ImageController {
 	
 	@GetMapping("/images")
 	@JsonView(com.jdr.entity.Views.ImageWithPartie.class)
+	@CrossOrigin
 	public ResponseEntity<List<Image>> findAll() {
 		List<Image> images = imageDao.findAll();
 		return new ResponseEntity<List<Image>>(images, HttpStatus.OK);
@@ -54,6 +53,7 @@ public class ImageController {
 	
 	@DeleteMapping("/images/{id}")
 	@JsonView(com.jdr.entity.Views.ImageWithPartie.class)
+	@CrossOrigin
 	public ResponseEntity<Image> delete(@PathVariable("id") Integer id){
 		Image tmp = imageDao.findByPrimaryKey(id);
 		if (tmp == null) {
@@ -66,6 +66,7 @@ public class ImageController {
 	
 	@PostMapping("/images")
 	@JsonView(com.jdr.entity.Views.ImageWithPartie.class)
+	@CrossOrigin
 	public ResponseEntity<Image> create(@Valid @RequestBody Image image) {
 		if (image.getId() > 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -75,6 +76,7 @@ public class ImageController {
 	}
 	@PutMapping("/images")
 	@JsonView(com.jdr.entity.Views.ImageWithPartie.class)
+	@CrossOrigin
 	public ResponseEntity<Image> update(@RequestBody Image image) {
 		if (image.getId() == 0) {
 			return create(image);
@@ -85,6 +87,7 @@ public class ImageController {
 	}
 	
     @ExceptionHandler({ Exception.class })
+    @CrossOrigin
     public ResponseEntity<Object> errors(){
     		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
     }

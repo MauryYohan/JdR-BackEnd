@@ -31,6 +31,7 @@ public class PersonnageController {
 	
 	@GetMapping("/personnages/{id}")
 	@JsonView(com.jdr.entity.Views.PersonnageWithEverything.class)
+	@CrossOrigin
 	public ResponseEntity<Personnage> findOne(@PathVariable("id") Integer id){
 		
 		Personnage b = personnageDao.findByPrimaryKey(id);
@@ -44,6 +45,7 @@ public class PersonnageController {
 	
 	@GetMapping("/personnages")
 	@JsonView(com.jdr.entity.Views.PersonnageWithEverything.class)
+	@CrossOrigin
 	public ResponseEntity<List<Personnage>> findAll() {
 		List<Personnage> personnages = personnageDao.findAll();
 		return new ResponseEntity<List<Personnage>>(personnages, HttpStatus.OK);
@@ -51,6 +53,7 @@ public class PersonnageController {
 	
 	@DeleteMapping("/personnages/{id}")
 	@JsonView(com.jdr.entity.Views.PersonnageWithEverything.class)
+	@CrossOrigin
 	public ResponseEntity<Personnage> delete(@PathVariable("id") Integer id){
 		Personnage tmp = personnageDao.findByPrimaryKey(id);
 		if (tmp == null) {
@@ -63,6 +66,7 @@ public class PersonnageController {
 	
 	@PostMapping("/personnages")
 	@JsonView(com.jdr.entity.Views.PersonnageWithEverything.class)
+	@CrossOrigin
 	public ResponseEntity<Personnage> create(@Valid @RequestBody Personnage personnage) {
 		if (personnage.getId() > 0) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -72,6 +76,7 @@ public class PersonnageController {
 	}
 	@PutMapping("/personnages")
 	@JsonView(com.jdr.entity.Views.PersonnageWithEverything.class)
+	@CrossOrigin
 	public ResponseEntity<Personnage> update(@RequestBody Personnage personnage) {
 		if (personnage.getId() == 0) {
 			return create(personnage);
@@ -82,6 +87,7 @@ public class PersonnageController {
 	}
 	
     @ExceptionHandler({ Exception.class })
+    @CrossOrigin
     public ResponseEntity<Object> errors(){
     		return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
     }

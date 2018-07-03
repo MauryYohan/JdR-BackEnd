@@ -22,8 +22,10 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	public List<Utilisateur> findAll() {
 		String querystring = "SELECT u FROM Utilisateur u ORDER BY id" ;
 		Query query = em.createQuery( querystring ) ;
+		@SuppressWarnings("unchecked")
 		List<Utilisateur> list = query.getResultList() ;
 		int numRow = count(list);
+		System.out.println("Nombre de ligne : " + numRow);
 		return list;
 	}
 
@@ -56,7 +58,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 
 	public int count(List<Utilisateur> list) {
 		int compteur = 0;
-		for (Utilisateur user : list) {
+		for (@SuppressWarnings("unused") Utilisateur user : list) {
 		    compteur += 1;
 		}
 		return compteur;
@@ -70,6 +72,11 @@ public class UtilisateurDaoImpl implements UtilisateurDao{
 	public Utilisateur findIdByMail(String mail) {
 		Utilisateur user = em.find(Utilisateur.class, mail);
 		return user;
+	}
+
+	@Override
+	public Utilisateur findByUID(String uid) {
+		return em.find(Utilisateur.class, uid);
 	}
 
 }

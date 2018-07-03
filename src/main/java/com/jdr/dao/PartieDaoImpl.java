@@ -22,6 +22,7 @@ public class PartieDaoImpl implements PartieDao{
 	public List<Partie> findAll() {
 		String querystring = "SELECT p FROM Partie p ORDER BY id" ;
 		Query query = em.createQuery( querystring ) ;
+		@SuppressWarnings("unchecked")
 		List<Partie> list = query.getResultList() ;
 		return list;
 	}

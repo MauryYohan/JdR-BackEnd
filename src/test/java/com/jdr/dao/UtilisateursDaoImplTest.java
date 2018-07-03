@@ -33,7 +33,7 @@ public class UtilisateursDaoImplTest {
 	
 	@Test
 	public void testFindIdByPseudo() {
-		Utilisateur u1 = userDao.findIdByPseudo("groniard");
+		Utilisateur u1 = userDao.findIdByPseudo("baz");
 		Assert.assertEquals(1, u1.getId());
 	}
 	
