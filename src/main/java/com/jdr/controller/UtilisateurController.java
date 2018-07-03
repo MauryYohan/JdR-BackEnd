@@ -47,7 +47,7 @@ public class UtilisateurController {
 	@GetMapping("/utilisateurs/mail/{mail}")
 	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
-	public ResponseEntity<Utilisateur> findTwo(@PathVariable("mail") String mail){
+	public ResponseEntity<Utilisateur> findOne(@PathVariable("mail") String mail){
 		
 		Utilisateur b = utilisateurDao.findIdByMail(mail);
 		
@@ -58,6 +58,7 @@ public class UtilisateurController {
 		}
 	}
 	
+<<<<<<< Updated upstream
 	@GetMapping("/utilisateurs/pseudo/{pseudo}")
 	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
@@ -72,6 +73,8 @@ public class UtilisateurController {
 		}
 	}
 	
+=======
+>>>>>>> Stashed changes
 	@GetMapping("/utilisateurs")
 	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
