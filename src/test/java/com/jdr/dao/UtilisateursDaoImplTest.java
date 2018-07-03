@@ -32,13 +32,12 @@ public class UtilisateursDaoImplTest {
 	
 	
 	@Test
-<<<<<<< Updated upstream
 	public void testFindIdByPseudo() {
 		Utilisateur u1 = userDao.findIdByPseudo("baz");
-=======
+	}
+	
 	public void testFindIdByMail() {
 		Utilisateur u1 = userDao.findIdByMail("mauryyohan1@gmail.com");
->>>>>>> Stashed changes
 		Assert.assertEquals(1, u1.getId());
 	}
 	

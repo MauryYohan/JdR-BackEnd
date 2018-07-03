@@ -75,10 +75,7 @@ public class Partie
 		this.Description = description;
 	}
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 	public Partie(String imageDeFond, @NotNull int nbJoueurs, @NotNull String titrePartie, Utilisateur userMj, List<Utilisateur> utilisateur,
 			Set<Personnage> personnage) {
 		super();
@@ -126,78 +123,68 @@ public class Partie
 		return titrePartie;
 	}
 
-	public void setTitrePartie(String titrePartie) {
-		this.titrePartie = titrePartie;
-	}
-
-<<<<<<< Updated upstream
-=======
 	/**
 	 * @return the image
 	 */
->>>>>>> Stashed changes
 	public Set<Image> getImage() {
 		return image;
 	}
 
-<<<<<<< Updated upstream
-=======
 	/**
 	 * @param image the image to set
 	 */
->>>>>>> Stashed changes
 	public void setImage(Set<Image> image) {
 		this.image = image;
 	}
 
-<<<<<<< Updated upstream
-=======
 	/**
 	 * @return the userMj
 	 */
->>>>>>> Stashed changes
 	public Utilisateur getUserMj() {
 		return userMj;
 	}
 
-<<<<<<< Updated upstream
-=======
 	/**
 	 * @param userMj the userMj to set
 	 */
->>>>>>> Stashed changes
 	public void setUserMj(Utilisateur userMj) {
 		this.userMj = userMj;
 	}
 
-<<<<<<< Updated upstream
-=======
 	/**
 	 * @return the utilisateur
 	 */
->>>>>>> Stashed changes
 	public List<Utilisateur> getUtilisateur() {
 		return utilisateur;
 	}
 
-<<<<<<< Updated upstream
-=======
 	/**
 	 * @param utilisateur the utilisateur to set
 	 */
->>>>>>> Stashed changes
 	public void setUtilisateur(List<Utilisateur> utilisateur) {
 		this.utilisateur = utilisateur;
 	}
 
+	/**
+	 * @return the personnage
+	 */
 	public Set<Personnage> getPersonnage() {
 		return personnage;
 	}
 
+	/**
+	 * @param personnage the personnage to set
+	 */
 	public void setPersonnage(Set<Personnage> personnage) {
 		this.personnage = personnage;
 	}
 
-	
+	/**
+	 * @param titrePartie the titrePartie to set
+	 */
+	public void setTitrePartie(String titrePartie) {
+		this.titrePartie = titrePartie;
+	}
+
 	
 }
