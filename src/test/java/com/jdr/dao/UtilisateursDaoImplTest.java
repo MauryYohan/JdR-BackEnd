@@ -63,6 +63,4 @@ public class UtilisateursDaoImplTest {
 		Assert.assertEquals("3429", u3.getMotDePasse());
 	}
 	
-	@Test
-	public void test
 }

@@ -59,7 +59,6 @@ public class UtilisateurController {
 	}
 
 	
-	
 	@GetMapping("/utilisateurs")
 	@JsonView(com.jdr.entity.Views.UtilisateurWithEverything.class)
 	@CrossOrigin
